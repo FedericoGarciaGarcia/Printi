@@ -3,6 +3,10 @@
 # Printi
 
 <div style="display:none;">
+<p>
+Hola
+</p>
+
 Lightweight application to print screenshots made in Java.
 
 ## Features
