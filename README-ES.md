@@ -1,12 +1,12 @@
 <img align="left" width="80" height="80" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
-<button>English</button>
+
 [English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
 [日本語](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
 [Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
 # Printi
 
-Aplicacion Java para imprimir capturas de pantalla.
+Aplicacion ligera para imprimir capturas de pantalla en Java.
 
 ## Features
 
