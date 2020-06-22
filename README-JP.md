@@ -13,8 +13,7 @@
 ![platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey)
 ![Java](https://img.shields.io/badge/java-%3E%3D1.8-green)
 
-
-Lightweight application to print screenshots.
+スクリーンショットを印刷する軽量アプリケーションです。
 
 ## Features
 
