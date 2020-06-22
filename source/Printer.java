@@ -12,12 +12,16 @@ public class Printer implements Runnable {
     private PrintService printService;
 	private int fit;
 	private int orientation;
+	private int printDialog;
+	private String paperSize;
 
-    public Printer(BufferedImage image, PrintService printService, int fit, int orientation) {
+    public Printer(BufferedImage image, PrintService printService, int fit, int orientation, int printDialog, String paperSize) {
         this.image = image;
         this.printService = printService;
 		this.fit = fit;
 		this.orientation = orientation;
+		this.printDialog = printDialog;
+		this.paperSize = paperSize;
     }
 
     @Override
@@ -33,29 +37,36 @@ public class Printer implements Runnable {
 			else
 				realOrientation = PageFormat.PORTRAIT;
 			
+			PageSize pageSize = PageSize.A4;
+			if(paperSize.equals("B5")) pageSize = PageSize.B5;
+			if(paperSize.equals("A4")) pageSize = PageSize.A4;
+			if(paperSize.equals("B4")) pageSize = PageSize.B4;
+			if(paperSize.equals("A3")) pageSize = PageSize.A3;
+			
 			PageFormatFactory pageFormatFactory = PageFormatFactory.getInstance();
-			Paper paper = pageFormatFactory.createPaper (PageSize.A4);
+			Paper paper = pageFormatFactory.createPaper (pageSize);
 			pageFormatFactory.setBordersMm (paper, 0, 0, 0, 0);
 			PageFormat format = pageFormatFactory.createPageFormat (paper, realOrientation);
 			
             //set the printService found (should be tested)
 			printJob.setPrintable(new ImagePrintable(printJob, format, image, fit), format);
             printJob.setPrintService(printService);
-            printJob.print();
+        
+			if(printDialog == 0) {
+				if (printJob.printDialog()) {
+					try {
+						printJob.print();
+					} catch (PrinterException prt) {
+						prt.printStackTrace();
+					}
+				}
+			}
+			else {
+				printJob.print();
+			}
         } catch (PrinterException prt) {
             prt.printStackTrace();
         }
-        
-		/*
-        if (printJob.printDialog()) {
-            try {
-				printJob.setPrintService(printService);
-                printJob.print();
-            } catch (PrinterException prt) {
-                prt.printStackTrace();
-            }
-        }
-		*/
     }
 
     public class ImagePrintable implements Printable {
