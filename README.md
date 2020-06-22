@@ -1,4 +1,5 @@
 ![Java](https://img.shields.io/badge/java-%3E%3D1.8-green)
+![Java](https://img.shields.io/badge/release-1.0-blue)
 
 <img align="left" width="100" height="100" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
@@ -8,7 +9,7 @@
 |
 [Español](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-# Printi [v1.0]
+# Printi
 
 Lightweight application to print screenshots made in Java.
 
