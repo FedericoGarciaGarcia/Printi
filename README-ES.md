@@ -6,7 +6,7 @@
 
 # Printi
 
-Lightweight application to print screenshots made in Java.
+Aplicacion Java para imprimir capturas de pantalla.
 
 ## Features
 
