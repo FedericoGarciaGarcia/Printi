@@ -1,14 +1,10 @@
 <img align="left" width="92" height="92" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
-<head>
-<link rel="stylesheet" type="text/css" href="https://github.com/FedericoGarciaGarcia/Printi/blob/development/style.css">
-</head>
+[[English]](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
+[[日本語]](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
+[[Espanol]](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-[English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
-[日本語](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
-[Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
-
-<h1>Printi</h1>
+<h1 style="margin-top:0px">Printi</h1>
 
 Lightweight application to print screenshots made in Java.
 
