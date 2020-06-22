@@ -12,7 +12,7 @@ Aplicación Java para imprimir capturas de pantalla.
 
 ## Características
 
-* ***Printers***: elegir la impresora a usar. También se pueden usar impresoras PDF.
+* ***Impresoras***: elegir la impresora a usar. También se pueden usar impresoras PDF.
 * ***Color***: escala de grises o a color.
 * ***Orientación***: vertical u horizontal.
 * ***Aspecto***: mantener proporciones o estirar.
