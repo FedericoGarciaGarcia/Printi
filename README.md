@@ -23,11 +23,6 @@ Lightweight application to print screenshots made in Java.
 * ***Save settings***: settings are saved every time.
 * ***No installation***: place it wherever you want and run it.
 
-More features on the way:
-
-* ***Title***: place a title on the document.
-* ***Date***: place the current date on the document.
-
 ## Installation
 
 Make sure you have [Java](https://java.com/en/download/) installed in your system.
