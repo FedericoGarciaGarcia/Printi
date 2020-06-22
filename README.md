@@ -2,6 +2,7 @@
 
 # Printi
 
+<div>
 Lightweight application to print screenshots made in Java.
 
 ## Features
@@ -71,3 +72,5 @@ Federico Garcia Garcia
 
 *PageFormatFactory* class made by:
 * *Object Refinery Ltd, Pentaho Corporation and Contributors*
+
+</div>
