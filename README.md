@@ -2,7 +2,7 @@
 
 # Printi
 
-<div>
+<div style="display:none;">
 Lightweight application to print screenshots made in Java.
 
 ## Features
