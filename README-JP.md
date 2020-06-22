@@ -1,3 +1,4 @@
+
 <img align="left" width="100" height="100" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
 [English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
@@ -6,9 +7,14 @@
 |
 [Español](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-# Printi [v1.0]
+# プリンティ
 
-Lightweight application to print screenshots made in Java.
+![version](https://img.shields.io/badge/version-1.0-blue)
+![platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey)
+![Java](https://img.shields.io/badge/java-%3E%3D1.8-green)
+
+
+Lightweight application to print screenshots.
 
 ## Features
 
@@ -21,7 +27,7 @@ Lightweight application to print screenshots made in Java.
 * ***Print Dialog***: show or hide printing dialog.
 * ***Language***: English, Spanish or Japanese. More languages can be added by the user.
 * ***Save settings***: settings are saved every time.
-* ***No installation***: place it wherever you want and run it.
+* ***Portable***: no installation is needed.
 
 ## Installation
 
