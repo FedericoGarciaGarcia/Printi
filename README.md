@@ -9,7 +9,7 @@
 
 # Printi
 
-<h1>Printi <p>Ah</p></h1>
+<h1>Printi <h4>Ah</h4></h1>
 
 Lightweight application to print screenshots made in Java.
 
