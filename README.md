@@ -1,4 +1,4 @@
-<img align="left" width="100" height="100" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
+<img align="left" width="80" height="80" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
 [English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
 |
