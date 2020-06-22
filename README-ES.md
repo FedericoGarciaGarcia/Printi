@@ -18,7 +18,7 @@ Aplicación Java para imprimir capturas de pantalla.
 * ***Aspecto***: mantener proporciones o estirar.
 * ***Barra de tareas***: mostrar u ocultar la barra de tareas del sistema operativo en la captura.
 * ***Notificaciones***: mostrar u ocultar notificaciones.
-* ***Print Dialog***: mostrar u ocultar diálogo de impresión.
+* ***Diálogo de impresión***: mostrar u ocultar diálogo de impresión.
 * ***Idioma***: inglés, español o japonés. Se pueden añadir más idiomas manualmente.
 * ***Guardar configuración***: la configuración se guarda tras cada cambio.
 * ***Portable***: no es necesario instalar.
