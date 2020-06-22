@@ -4,7 +4,7 @@
 |
 [日本語](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
 |
-[Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
+[Español](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
 # Printi [v1.0]
 
@@ -21,7 +21,7 @@ Lightweight application to print screenshots made in Java.
 * ***Print Dialog***: show or hide printing dialog.
 * ***Language***: English, Spanish or Japanese. More languages can be added by the user.
 * ***Save settings***: settings are saved every time.
-* ***No installation***: place it wherever you want and run it.
+* ***Portable***: no installation is needed.
 
 ## Installation
 

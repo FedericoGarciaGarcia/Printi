@@ -1,42 +1,39 @@
 <img align="left" width="80" height="80" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
 [English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
+|
 [日本語](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
-[Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
+|
+[Español](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-# Printi
+# Printi [v1.0]
 
-Aplicacion ligera para imprimir capturas de pantalla en Java.
+Aplicación Java para imprimir capturas de pantalla.
 
-## Features
+## Características
 
-* ***Color***: grayscale or full color.
-* ***Paper orientation***: landscape or portrait.
-* ***Fit***: maintain aspect ratio or stretch to fit.
-* ***Taskbar***: show or hide the operating system's taskbar in the screenshot.
-* ***Printers***: select the printer to use. PDF printers are also valid.
-* ***Language***: English, Spanish or Japanese. More languages can be added by the user.
-* ***Save settings***: settings are saved every time.
+* ***Printers***: elegir la impresora a usar. También se pueden usar impresoras PDF.
+* ***Color***: escala de grises o a color.
+* ***Orientación***: vertical u horizontal.
+* ***Aspecto***: mantener proporciones o estirar.
+* ***Barra de tareas***: mostrar u ocultar la barra de tareas del sistema operativo en la captura.
+* ***Notificaciones***: mostrar u ocultar notificaciones.
+* ***Print Dialog***: mostrar u ocultar diálogo de impresión.
+* ***Idioma***: inglés, español o japonés. Se pueden añadir más idiomas manualmente.
+* ***Guardar configuración***: la configuración se guarda tras cada cambio.
+* ***Portable***: no es necesario instalar.
 
-More features on the way:
+## Instalación
 
-* ***Do no print screenshot***: Hold the SHIFT key and press the PRINT SCREEN key to take a screenshot without printing.
-* ***Title***: place a title on the document.
-* ***Date***: place the current date on the document.
-* ***Paper size***: available sizes are A4, A3 and B5. Custom sizes are also accepted.
-* ***Notification***: show a notification when a screenshot is taken.
-
-## Installation
-
-Make sure you have [Java](https://java.com/en/download/) installed in your system.
+Es necesario tener [Java](https://java.com/en/download/) instalado.
 
 ### Windows
 
-Download the *EasyKeyToPrint* folder in *releases/windows* and put in desired location. You can start the application by running *EasyKeyToPrinte.exe*.
+Download the *Printi* folder in *releases/windows* and put in desired location. You can start the application by running *printi.exe*.
 
 ### Linux and MAC
 
-Download the *EasyKeyToPrint* folder in *releases/java* and put in desired location. You can start the application by running *EasyKeyToPrinte.jar*.
+Download the *Printi* folder in *releases/java* and put in desired location. You can start the application by running *printi.jar*.
 
 ## How to use
 
@@ -44,6 +41,17 @@ Download the *EasyKeyToPrint* folder in *releases/java* and put in desired locat
 * Right click the tray icon and select your printer and other settings.
 * Press the PRINT SCREEN key.
 * The screen will be printed.
+
+In case you want to take a screenshot without printing, hold SHIFT and press the PRINT SCREEN key.
+
+## Languages
+
+More languages can be added manually. Added languages can be changed in the application.
+
+* Go to the *languages* folder.
+* Copy the *english.txt* file and paste it with a different name.
+* Open the new pasted file.
+* Translate every text below the texts in brackets. Do not change the text in brackets.
 
 ## Source code
 
