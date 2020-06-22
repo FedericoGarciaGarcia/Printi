@@ -25,7 +25,6 @@ Lightweight application to print screenshots made in Java.
 
 More features on the way:
 
-* ***Do no print screenshot***: Hold the SHIFT key and press the PRINT SCREEN key to take a screenshot without printing.
 * ***Title***: place a title on the document.
 * ***Date***: place the current date on the document.
 
@@ -47,6 +46,8 @@ Download the *Printi* folder in *releases/java* and put in desired location. You
 * Right click the tray icon and select your printer and other settings.
 * Press the PRINT SCREEN key.
 * The screen will be printed.
+
+In case you want to take a screenshot without printing, hold SHIFT and press the PRINT SCREEN key.
 
 ## Source code
 
