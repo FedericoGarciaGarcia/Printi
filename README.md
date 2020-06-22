@@ -12,6 +12,12 @@ Lightweight application to print screenshots made in Java.
 
 ## Features
 
+### Printers
+Select the printer to use. PDF printers are also valid.
+
+### Color
+Grayscale or full color.
+
 * ***Printers***: select the printer to use. PDF printers are also valid.
 * ***Color***: grayscale or full color.
 * ***Paper orientation***: landscape or portrait.
