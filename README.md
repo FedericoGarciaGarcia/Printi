@@ -14,7 +14,7 @@
 ![Java](https://img.shields.io/badge/java-%3E%3D1.8-green)
 
 
-Lightweight application to print screenshots made in Java.
+Lightweight application to print screenshots.
 
 ## Features
 
