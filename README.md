@@ -6,7 +6,7 @@
 |
 [Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-# Printi
+# Printi v1.0
 
 Lightweight application to print screenshots made in Java.
 
