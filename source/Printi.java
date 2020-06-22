@@ -13,28 +13,29 @@ import java.util.concurrent.AbstractExecutorService;
 import java.util.List;
 import java.util.ArrayList;
 
-import java.awt.*;
+import javax.swing.*;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.event.*;
+import javax.print.*;
+
 import java.io.*;
 import java.lang.StringBuilder;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.print.*;
-
 import java.util.HashMap;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+
+
+import java.net.*;
 
 public class Printi implements NativeKeyListener  {
     
@@ -54,6 +55,9 @@ public class Printi implements NativeKeyListener  {
     private HashMap<String, Integer> languageNamesMap;
     private ArrayList<HashMap<String, Integer>> languages;
     
+	// Icon
+	private ImageIcon icon;
+	private JEditorPane ep;
 	
     // Robot
     private Robot robot;
@@ -119,6 +123,9 @@ public class Printi implements NativeKeyListener  {
             // Create tray system
 			createTray();
 			
+			// Create about dialog
+			createAbout();
+			
 			// Set default config
 			defaultConfig();
             
@@ -181,10 +188,12 @@ public class Printi implements NativeKeyListener  {
 		// Try to load the image
 		try {
 			image = ImageIO.read(getClass().getResource("/images/icon.png"));
+			icon = new ImageIcon(getClass().getResource("/images/icon_small.png"));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		// Get the OS tray image size
 		final SystemTray tray = SystemTray.getSystemTray();
 		Dimension trayIconSize = tray.getTrayIconSize();
@@ -336,6 +345,12 @@ public class Printi implements NativeKeyListener  {
 				}
 			});
 		}
+		
+		popup.addActionToMenuItem("About", new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				  showAbout();
+			  }
+		});
 			
 		// Try and add the tray system
 		try {
@@ -564,4 +579,63 @@ public class Printi implements NativeKeyListener  {
     public static void main(String [] args) {
         new Printi();
     }
+	
+	// Create about
+	private void createAbout() {
+		ep = new JEditorPane("text/html",
+			"<html>"+
+			"<head><style>p, h1{margin:0; font-family: Arial, Helvetica, sans-serif;}</style></head>"+
+			"<h1>Printi</h1>"+
+			"<br/>"+
+			"<p>Federico Garcia Garcia</p>"+
+			"<p><a href='https://github.com/FedericoGarciaGarcia/Printi'>https://github.com/FedericoGarciaGarcia/Printi</a></p>"+
+			"<br/>"+
+			"<p>June 2020</p>"+
+			"</html>"
+		);
+		ep.setBackground(new Color(0,0,0,0));
+		  ep.addHyperlinkListener(new HyperlinkListener() {
+			  @Override
+			  public void hyperlinkUpdate(HyperlinkEvent e) {
+				  if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
+					  System.out.println(e.getURL()+" was clicked");
+					  openWebpage(e.getURL());
+					  JOptionPane.getRootFrame().dispose();
+				  }
+			  }
+			 
+		  });
+		  
+		ep.setEditable(false);
+	}
+	
+	private void showAbout() {
+		JOptionPane.showMessageDialog(null,
+		ep,
+		"About",
+		JOptionPane.INFORMATION_MESSAGE,
+		icon);
+	}
+	
+	public static boolean openWebpage(URI uri) {
+    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+			try {
+				desktop.browse(uri);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public static boolean openWebpage(URL url) {
+		try {
+			return openWebpage(url.toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
