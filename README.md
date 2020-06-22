@@ -6,8 +6,8 @@
 |
 [Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-
-# Printi
+</br>
+Printi
 
 <h1></h1>
 
