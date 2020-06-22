@@ -10,8 +10,13 @@ public class Config {
 	public int fit;
 	public String paperSize;
 	public int taskbar;
+	public int date;
+	public int title;
+	public String titleName;
+	
 	public int notification;
 	public int printDialog;
 	public String printer;
+	
 	public String language;
 }

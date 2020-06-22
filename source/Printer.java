@@ -3,7 +3,13 @@ import java.awt.image.BufferedImage;
 import java.awt.print.*;
 import javax.print.*;
 import java.awt.Color;
-import java.awt.geom.AffineTransform;
+import java.awt.geom.*;
+
+import java.text.*;
+import java.util.Date;
+import java.time.*;
+import java.time.format.*;
+import java.awt.font.*;
 
 public class Printer implements Runnable {
 
@@ -69,11 +75,13 @@ public class Printer implements Runnable {
         } catch (PrinterException prt) {
             prt.printStackTrace();
         }
+		
+		image = null;
     }
 
     public class ImagePrintable implements Printable {
 
-        private double x, y, width, height;
+        private double x, y, width, height, fullHeight;
         private int orientation;
         private BufferedImage image;
 		private int fit;
@@ -83,14 +91,20 @@ public class Printer implements Runnable {
             this.y = pageFormat.getImageableY();
             this.width = pageFormat.getImageableWidth();
             this.height = pageFormat.getImageableHeight();
+			this.fullHeight = this.height;
             this.orientation = pageFormat.getOrientation();
-			this.image = image;
 			this.fit = fit;
+			this.image = image;
+			
+			// Remove 5% of height if the date is to be printed
+			this.height *= 0.95f;
         }
 
         @Override
-        public int print(Graphics g, PageFormat pageFormat, int pageIndex)
-                throws PrinterException {
+        public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
+					
+			Graphics2D g2 = (Graphics2D)g;
+					
             if (pageIndex == 0) {
                 int pWidth = 0;
                 int pHeight = 0;
@@ -110,7 +124,24 @@ public class Printer implements Runnable {
 					pHeight = (int) height;
 				}
 				
-                g.drawImage(image, (int) x, (int) y, pWidth, pHeight, null);
+                g2.drawImage(image, (int) x, (int) y, pWidth, pHeight, null);
+				
+				
+				// Paint date
+				if(config.date == 0) {
+					String date = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).format(ZonedDateTime.now());
+					
+					AttributedString text = new AttributedString(date);
+					TextLayout textLayout = new TextLayout( 
+						text.getIterator(), 
+						g2.getFontRenderContext()
+					);
+					Rectangle2D.Float bounds = ( Rectangle2D.Float ) textLayout.getBounds();
+					int Ilength = (int)bounds.getWidth();
+					int Iheight = (int)bounds.getHeight();
+
+					g2.drawString(date, (int)(width-Ilength)/2, (int)(fullHeight-(fullHeight-fullHeight*0.95)/2+Iheight/2));
+				}
 				
                 return PAGE_EXISTS;
             } else {

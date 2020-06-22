@@ -46,9 +46,15 @@ public class Printi implements NativeKeyListener  {
     private String[] paperSizes;
     private HashMap<String, PrintService> printersMap;
     private HashMap<String, Integer> printerNamesMap;
-    private HashMap<String, Integer> languageNamesMap;
+	
+	// Papers
     private HashMap<String, Integer> paperSizeNamesMapNamesMap;
+	
+	// Languages
+    private HashMap<String, Integer> languageNamesMap;
+    private ArrayList<HashMap<String, Integer>> languages;
     
+	
     // Robot
     private Robot robot;
     
@@ -71,7 +77,9 @@ public class Printi implements NativeKeyListener  {
         printersMap      = new HashMap<String, PrintService>();
 		printerNamesMap  = new HashMap<String, Integer>();
 		languageNamesMap = new HashMap<String, Integer>();
-		paperSizeNamesMapNamesMap    = new HashMap<String, Integer>();
+		paperSizeNamesMapNamesMap = new HashMap<String, Integer>();
+		
+		languages = new ArrayList<HashMap<String, Integer>>();
 		
 		paperSizes = new String[] {"B5", "A4", "B4", "A3"};
 		
@@ -97,6 +105,7 @@ public class Printi implements NativeKeyListener  {
         /*
          * INIT EVERYTHNING
          */
+		loadLanguages();
         initPriters();
         hookKeyboard();
 		
@@ -125,6 +134,10 @@ public class Printi implements NativeKeyListener  {
         
         System.out.println("Successfully created TrayIcon");
     }
+	
+	// Load each language available
+	private void loadLanguages() {
+	}
     
     // Get available printers
     // Create dictionary of printers
@@ -186,8 +199,6 @@ public class Printi implements NativeKeyListener  {
 		popup.addMenu("Color");
 			popup.addCheckboxToMenu("Color", "Black and white");
 			popup.addCheckboxToMenu("Color", "Color");
-		//popup.add(titleItem); TODO
-		//popup.add(dateItem);  TODO
 		popup.addMenu("Orientation");
 			popup.addCheckboxToMenu("Orientation", "Landscape");
 			popup.addCheckboxToMenu("Orientation", "Portrait");
@@ -200,6 +211,14 @@ public class Printi implements NativeKeyListener  {
 		popup.addMenu("Taskbar");
 			popup.addCheckboxToMenu("Taskbar", "Show taskbar");
 			popup.addCheckboxToMenu("Taskbar", "Hide taskbar");
+		popup.addMenu("Date");
+			popup.addCheckboxToMenu("Date", "Print date");
+			popup.addCheckboxToMenu("Date", "Don't print date");
+			/*
+		popup.addMenu("Title");
+			popup.addMenuItemToMenu("Title", "Print title");
+			popup.addCheckboxToMenu("Title", "Don't print title");
+			*/
 		popup.addSeparator();
 		popup.addMenu("Notification");
 			popup.addCheckboxToMenu("Notification", "Show notification");
@@ -278,6 +297,16 @@ public class Printi implements NativeKeyListener  {
 			});
 		}
 		
+		for(int i=0; i<popup.getMenu("Date").getChildren().size(); i++) {
+			final int ii = i;
+			popup.addActionToCheckbox("Date", ii, new ItemListener() {
+				public void itemStateChanged(ItemEvent event) {
+					config.date = ii;
+					saveConfig();
+				}
+			});
+		}
+		
 		for(int i=0; i<popup.getMenu("Notification").getChildren().size(); i++) {
 			final int ii = i;
 			popup.addActionToCheckbox("Notification", ii, new ItemListener() {
@@ -324,6 +353,7 @@ public class Printi implements NativeKeyListener  {
 		popup.selectCheckbox("Fit",          config.fit);
 		popup.selectCheckbox("Paper size",   paperSizeNamesMapNamesMap.get(config.paperSize));
 		popup.selectCheckbox("Taskbar",      config.taskbar);
+		popup.selectCheckbox("Date",         config.date);
 		popup.selectCheckbox("Notification", config.notification);
 		popup.selectCheckbox("Print dialog", config.printDialog);
 		popup.selectCheckbox("Printer",      printerNamesMap.get(config.printer));
@@ -336,6 +366,7 @@ public class Printi implements NativeKeyListener  {
         config.fit          = 0;
 		config.paperSize    = "A4";
         config.taskbar      = 0;
+        config.date         = 0;
         config.notification = 0;
         config.printDialog  = 0;
 		config.printer     = printServices[0].getName();
@@ -344,49 +375,57 @@ public class Printi implements NativeKeyListener  {
     
     // Try and load configuration
     private void loadConfig() {
-		// Save config file
+		// Load config file
 		try {
-			// Read line by line
-			BufferedReader reader = new BufferedReader(new FileReader("config.ini"));
-			ArrayList<String> strings = new ArrayList<String>();
-			String line = null;
+			File configFile = new File("config.ini");
 			
-			while ((line = reader.readLine()) != null) {
-				// Do not add empty lines
-				if(line.length() > 0)
-				strings.add(line);
-			}
-			reader.close();
-			
-			// Set config
-			for(int i=0; i<strings.size(); i++) {
-				if(strings.get(i).equals("[Color]"))
-					config.color = Integer.parseInt(strings.get(i+1));
+			if (configFile.createNewFile()) {
+				System.out.println("config.ini file created");
+			} else {
+				// Read line by line
+				BufferedReader reader = new BufferedReader(new FileReader("config.ini"));
+				ArrayList<String> strings = new ArrayList<String>();
+				String line = null;
 				
-				if(strings.get(i).equals("[Orientation]"))
-					config.orientation = Integer.parseInt(strings.get(i+1));
+				while ((line = reader.readLine()) != null) {
+					// Do not add empty lines
+					if(line.length() > 0)
+					strings.add(line);
+				}
+				reader.close();
 				
-				if(strings.get(i).equals("[Fit]"))
-					config.fit = Integer.parseInt(strings.get(i+1));
-				
-				if(strings.get(i).equals("[Paper size]"))
-					config.paperSize = strings.get(i+1);
-				
-				if(strings.get(i).equals("[Taskbar]"))
-					config.taskbar = Integer.parseInt(strings.get(i+1));
-				
-				if(strings.get(i).equals("[Notification]"))
-					config.notification = Integer.parseInt(strings.get(i+1));
-				
-				if(strings.get(i).equals("[Print dialog]"))
-					config.printDialog = Integer.parseInt(strings.get(i+1));
-				
-				if(strings.get(i).equals("[Printer]"))
-					config.printer = strings.get(i+1);
+				// Set config
+				for(int i=0; i<strings.size(); i++) {
+					if(strings.get(i).equals("[Color]"))
+						config.color = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Orientation]"))
+						config.orientation = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Fit]"))
+						config.fit = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Paper size]"))
+						config.paperSize = strings.get(i+1);
+					
+					if(strings.get(i).equals("[Taskbar]"))
+						config.taskbar = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Date]"))
+						config.date = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Notification]"))
+						config.notification = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Print dialog]"))
+						config.printDialog = Integer.parseInt(strings.get(i+1));
+					
+					if(strings.get(i).equals("[Printer]"))
+						config.printer = strings.get(i+1);
+				}
 			}
 		}
 		catch(IOException e) {
-			System.out.println("Could not save config.ini");
 			e.printStackTrace();
 		}
     }
@@ -412,6 +451,9 @@ public class Printi implements NativeKeyListener  {
 			out.println("[Taskbar]");
 			out.println(config.taskbar);
 			
+			out.println("[Date]");
+			out.println(config.date);
+			
 			out.println("[Notification]");
 			out.println(config.notification);
 			
@@ -430,6 +472,7 @@ public class Printi implements NativeKeyListener  {
 			System.out.println("  orientation: "  +config.orientation);
 			System.out.println("  fit: "          +config.fit);
 			System.out.println("  taskbar: "      +config.taskbar);
+			System.out.println("  date: "         +config.date);
 			System.out.println("  paper size: "   +config.paperSize);
 			System.out.println("  printer: "      +config.printer);
 			System.out.println("  notification: " +config.notification);
