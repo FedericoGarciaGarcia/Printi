@@ -6,9 +6,13 @@
 |
 [Español](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
-# Printi [v1.0]
+# Printi
 
-Aplicación Java para imprimir capturas de pantalla.
+![version](https://img.shields.io/badge/version-1.0-blue)
+![platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey)
+![Java](https://img.shields.io/badge/java-%3E%3D1.8-green)
+
+Aplicación para imprimir capturas de pantalla.
 
 ## Características
 
