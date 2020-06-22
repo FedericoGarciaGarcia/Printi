@@ -44,6 +44,15 @@ Download the *Printi* folder in *releases/java* and put in desired location. You
 
 In case you want to take a screenshot without printing, hold SHIFT and press the PRINT SCREEN key.
 
+## Languages
+
+More languages can be added manually. Added languages can be changed in the application.
+
+* Go to the *languages* folder.
+* Copy the *english.txt* file and paste it with a different name.
+* Open the new pasted file.
+* Translate every text below the texts in brackets. Do not change the text in brackets.
+
 ## Source code
 
 You can also download the source code and compile it yourself.
