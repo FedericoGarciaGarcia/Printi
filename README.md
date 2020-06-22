@@ -1,11 +1,12 @@
 <img align="left" width="92" height="92" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
+<head>
 <style>
 h1 {
 	margin-top:0px !important;
 }
 </style>
-
+</head>
 [English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
 [日本語](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
 [Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
