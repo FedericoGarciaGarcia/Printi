@@ -1,27 +1,22 @@
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.print.*;
 import javax.print.*;
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
-import java.awt.Graphics2D;
 
 public class Printer implements Runnable {
 
     private BufferedImage image;
     private PrintService printService;
-	private int fit;
-	private int orientation;
-	private int printDialog;
-	private String paperSize;
+	private Config config;
+	private TrayIcon trayIcon;
 
-    public Printer(BufferedImage image, PrintService printService, int fit, int orientation, int printDialog, String paperSize) {
+    public Printer(BufferedImage image, PrintService printService, Config config, TrayIcon trayIcon) {
         this.image = image;
         this.printService = printService;
-		this.fit = fit;
-		this.orientation = orientation;
-		this.printDialog = printDialog;
-		this.paperSize = paperSize;
+		this.config = config;
+		this.trayIcon = trayIcon;
     }
 
     @Override
@@ -32,16 +27,16 @@ public class Printer implements Runnable {
         try {
 			int realOrientation;
 			
-			if(orientation == 0)
+			if(config.orientation == 0)
 				realOrientation = PageFormat.LANDSCAPE;
 			else
 				realOrientation = PageFormat.PORTRAIT;
 			
 			PageSize pageSize = PageSize.A4;
-			if(paperSize.equals("B5")) pageSize = PageSize.B5;
-			if(paperSize.equals("A4")) pageSize = PageSize.A4;
-			if(paperSize.equals("B4")) pageSize = PageSize.B4;
-			if(paperSize.equals("A3")) pageSize = PageSize.A3;
+			if(config.paperSize.equals("B5")) pageSize = PageSize.B5;
+			if(config.paperSize.equals("A4")) pageSize = PageSize.A4;
+			if(config.paperSize.equals("B4")) pageSize = PageSize.B4;
+			if(config.paperSize.equals("A3")) pageSize = PageSize.A3;
 			
 			PageFormatFactory pageFormatFactory = PageFormatFactory.getInstance();
 			Paper paper = pageFormatFactory.createPaper (pageSize);
@@ -49,20 +44,27 @@ public class Printer implements Runnable {
 			PageFormat format = pageFormatFactory.createPageFormat (paper, realOrientation);
 			
             //set the printService found (should be tested)
-			printJob.setPrintable(new ImagePrintable(printJob, format, image, fit), format);
+			printJob.setPrintable(new ImagePrintable(printJob, format, image, config.fit), format);
             printJob.setPrintService(printService);
         
-			if(printDialog == 0) {
+			if(config.printDialog == 0) {
 				if (printJob.printDialog()) {
 					try {
 						printJob.print();
+						
+						if(config.notification == 0)
+						trayIcon.displayMessage("Printi", "'"+printService.getName()+"' is printing", TrayIcon.MessageType.INFO);
 					} catch (PrinterException prt) {
 						prt.printStackTrace();
 					}
 				}
 			}
 			else {
+				if(config.notification == 0)
+				trayIcon.displayMessage("Printi", "'"+printService.getName()+"' is printing", TrayIcon.MessageType.INFO);
+
 				printJob.print();
+				
 			}
         } catch (PrinterException prt) {
             prt.printStackTrace();

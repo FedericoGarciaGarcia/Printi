@@ -52,18 +52,7 @@ public class Printi implements NativeKeyListener  {
     // Robot
     private Robot robot;
     
-    // Config
-    class Config {
-        public int color;
-        public int orientation;
-        public int fit;
-        public String paperSize;
-		public int taskbar;
-		public int notification;
-		public int printDialog;
-        public String printer;
-        public String language;
-    }
+	// Configuration
     private Config config;
 	
 	// Trayicon
@@ -470,43 +459,7 @@ public class Printi implements NativeKeyListener  {
         // Take screenshot
         Rectangle screenRect = new Rectangle(screenSize);
         BufferedImage imageColor = robot.createScreenCapture(screenRect);
-        
-        // Try and find a horizontal line, that is not white, all of the same color in the first 20% of the image height.
-        // That would mean that's the application's menubar
-        /*int y=0;
-        
-        int heightToAnalyze = (int)(0.2f*(float)imageColor.getHeight());
-        int white = Color.white.getRGB();
-        
-        for(int i=heightToAnalyze-1; i>=0; i--) {
-        
-            int currentColor = imageColor.getRGB(0, i);
-            boolean found = true;
-            
-            if(currentColor != white) {
-                for(int j=1; j<imageColor.getWidth() && found; j++) {
-                    int color = imageColor.getRGB(j, i);
-                    
-                    if(color != currentColor) {
-                        found = false;
-                    }
-                }
-            }
-            
-            // We found it!
-            if(found) {
-                y = i;
-                break;
-            }
-        }
-        
-        System.out.println(heightToAnalyze);
-        System.out.println(y);
-        
-        // Get subimage
-        imageColor = imageColor.getSubimage(0, y, imageColor.getWidth(), imageColor.getHeight()-y);
-		*/
-        
+		
 		BufferedImage image;
 		
         // If option of black and white is selected, make the image grayscale, just in case
@@ -524,10 +477,7 @@ public class Printi implements NativeKeyListener  {
         //attrib.add(Chromaticity.MONOCHROME);
         
         // Create printer and start thread
-		if(config.notification == 0)
-		trayIcon.displayMessage("Printi", "'"+config.printer+"' is printing", TrayIcon.MessageType.INFO);
-		
-        Printer printer = new Printer(image, printersMap.get(config.printer), config.fit, config.orientation, config.printDialog, config.paperSize);
+        Printer printer = new Printer(image, printersMap.get(config.printer), config, trayIcon);
         printer.run();
     }
 	
@@ -545,7 +495,8 @@ public class Printi implements NativeKeyListener  {
     
     // Cehck key pressed
     public void nativeKeyPressed(NativeKeyEvent e) {
-        if (e.getKeyCode() == NativeKeyEvent.VC_PRINTSCREEN && e.getRawCode() == 44) {// e.getRawCode() == 44 Solves the problem of mistaking with asterisk
+        if (!((e.getModifiers() & NativeKeyEvent.SHIFT_MASK) > 0) // User can take normal screenshot with SHIFT keys
+		 && e.getKeyCode() == NativeKeyEvent.VC_PRINTSCREEN && e.getRawCode() == 44) {// e.getRawCode() == 44 Solves the problem of mistaking with asterisk
             // Only print once. We prevent from people holding the print button too long
             // and printing multiple times by accident
             if(!printHasBeenPressed) {
