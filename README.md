@@ -1,7 +1,7 @@
 <img align="left" width="92" height="92" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="https://github.com/FedericoGarciaGarcia/Printi/blob/development/style.css">
 </head>
 
 [English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
