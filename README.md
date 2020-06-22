@@ -1,9 +1,11 @@
 <img align="left" width="100" height="100" src="https://raw.githubusercontent.com/FedericoGarciaGarcia/EasyKeyToPrint/development/source/images/icon.png" alt="Resume application project app icon">
 
 <a href="">English</a>
-[[English]](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
-[[日本語]](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
-[[Espanol]](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
+[English](https://github.com/FedericoGarciaGarcia/Printi/tree/development)
+|
+[日本語](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-JP.md)
+|
+[Espanol](https://github.com/FedericoGarciaGarcia/Printi/blob/development/README-ES.md)
 
 
 # Printi
